@@ -26,46 +26,46 @@ import com.synectiks.student.domain.vo.StudentFilterDataCache;
 @Component
 public class Query implements GraphQLQueryResolver {
 
-    private final static Logger logger = LoggerFactory.getLogger(Query.class);
+	private final static Logger logger = LoggerFactory.getLogger(Query.class);
 
 //	@Autowired
 //	private StudentRepository studentRepository;
 
-    @Autowired
+	@Autowired
     private CommonService commonService;
 
-    @Autowired
+	@Autowired
     private ApplicationProperties applicationProperties;
 
     //Needed
     public List<CmsInvoice>  getInvoices(Long studentId, Long branchId){
-        String feeUrl = applicationProperties.getFeeSrvUrl() + "/api/cmsinvoice-by-filters?studentId="+studentId+"&branchId="+branchId;
-        CmsInvoice[] list = this.commonService.getObject(feeUrl,CmsInvoice[].class);
+    	String feeUrl = applicationProperties.getFeeSrvUrl() + "/api/cmsinvoice-by-filters?studentId="+studentId+"&branchId="+branchId;
+    	CmsInvoice[] list = this.commonService.getObject(feeUrl,CmsInvoice[].class);
         return Arrays.asList(list);
     }
 
 
     // Needed
-    public StudentFilterDataCache createStudentFilterDataCache() throws Exception{
+        public StudentFilterDataCache createStudentFilterDataCache() throws Exception{
 
 //    	List<Branch> branchList = this.commonService.getBranchForCriteria(Long.valueOf(collegeId));
 //    	List<Department> departmentList = this.commonService.getDepartmentForCriteria(branchList, Long.valueOf(academicYearId));
-        String preUrl = this.applicationProperties.getPrefSrvUrl();
-        String url = preUrl+"/api/batch-by-filters/";
-        Batch[] batchList = this.commonService.getObject(url,Batch[].class);
-        url = preUrl+"/api/section-by-filters/";
-        Section[] sectionList = this.commonService.getObject(url,Section[].class);
+    	String preUrl = this.applicationProperties.getPrefSrvUrl();
+    	String url = preUrl+"/api/batch-by-filters/";
+    	Batch[] batchList = this.commonService.getObject(url,Batch[].class);
+    	url = preUrl+"/api/section-by-filters/";
+    	Section[] sectionList = this.commonService.getObject(url,Section[].class);
 //    	List<CmsStudentTypeVo> studentTypeList = this.commonService.getAllStudentTypes();
 //    	List<CmsGenderVo> genderList = this.commonService.getAllGenders();
 
-        StudentFilterDataCache cache = new StudentFilterDataCache();
+    	StudentFilterDataCache cache = new StudentFilterDataCache();
 //    	cache.setBranches(branchList);
 //    	cache.setDepartments(departmentList);
-        cache.setBatches(Arrays.asList(batchList));
-        cache.setSections(Arrays.asList(sectionList));
+    	cache.setBatches(Arrays.asList(batchList));
+    	cache.setSections(Arrays.asList(sectionList));
 //    	cache.setStudentTypes(studentTypeList);
 //    	cache.setGenders(genderList);
-        return cache;
+    	return cache;
     }
 
     public List<Facility> getFacilities(){

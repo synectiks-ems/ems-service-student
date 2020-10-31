@@ -339,6 +339,7 @@ type CmsStudentVo {
 
     section :                               Section
  	batch :                                 Batch
+ 	facility:                               Facility
 	strCreatedOn:                           String
 	strUpdatedOn:                           String
 	strDisabilityCertificateIssueDate:      String
