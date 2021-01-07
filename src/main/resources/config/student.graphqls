@@ -4,6 +4,7 @@ type Query {
 	getInvoices(studentId: Long, branchId: Long): [CmsInvoice]
 	createStudentFilterDataCache: StudentFilterDataCache
 	getFacilities: [Facility]
+	getStudentList: [CmsStudentVo]
 }
 
 type Mutation {
